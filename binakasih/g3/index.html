@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bank Soal Matematika SD (Kelas 1 - 3)</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Montserrat & Noto Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+    
+    <style>
+        :root {
+            --primary-text: #333333;
+            --secondary-text: #555555;
+            --grey-text: #8d8e8d;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body {
+            font-family: "Montserrat", sans-serif; font-size: 10pt; line-height: 1.4;
+            color: var(--primary-text); background-color: #525659; margin: 0; padding: 20px 0;
+        }
+
+        .page-container { display: flex; flex-direction: column; align-items: center; }
+
+        .page {
+            background: white; width: 21cm; height: 29.7cm; padding: 1cm 1.5cm;
+            margin-bottom: 1cm; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative; display: flex; flex-direction: column; overflow: hidden;
+        }
+
+        .page-header { width: 100%; margin-bottom: 10px; flex-shrink: 0; }
+        .content-wrapper { position: relative; z-index: 1; width: 100%; flex-grow: 1; display: flex; flex-direction: column; }
+        
+        .page-footer {
+            text-align: center; font-size: 6pt; color: var(--grey-text); padding-top: 4px;
+            margin-top: auto; border-top: 2px solid var(--grey-text); width: 100%;
+            display: flex; gap: 5px; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+
+        .math-champs-header { background-color: white; padding: 0.2rem 0; display: flex; justify-content: space-between; align-items: center; color: black; }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background-color: white; padding: 0; margin: 0; }
+            .page-container { display: block; }
+            .page {
+                width: 21cm; height: 29.6cm; margin: 0; box-shadow: none;
+                page-break-after: always; page-break-inside: avoid; padding: 1cm 1.5cm; border: none;
+            }
+            .bg-gray-50 { background-color: #f9fafb !important; }
+            .bg-blue-50 { background-color: #eff6ff !important; }
+            .choice-box, .section-title { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        }
+
+        .soal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5cm 0.8cm; align-items: start; }
+        .soal-grid-full { display: grid; grid-template-columns: 1fr; gap: 0.5cm; align-items: start; }
+
+        .soal-item { break-inside: avoid; position: relative; background-color: #f9fafb; border: 1px solid #e5e7eb; border-radius: 0.5rem; padding: 0.75rem; }
+
+        .section-title {
+            font-weight: 800; font-size: 1.05rem; border-bottom: 2px solid #ddd;
+            padding-bottom: 4px; margin-bottom: 10px; margin-top: 5px; color: #1f2937; text-transform: uppercase;
+        }
+
+        .choice-container { display: flex; flex-direction: column; gap: 6px; font-size: 0.85rem; margin-top: 8px; }
+        .choice-item { display: flex; align-items: center; gap: 8px; cursor: pointer; padding: 4px 8px; border: 1px solid #d1d5db; border-radius: 6px; background-color: white; }
+        .choice-item:hover { background-color: #eff6ff; border-color: #bfdbfe; }
+        .choice-box { width: 20px; height: 20px; border: 1.5px solid #333; border-radius: 4px; background: white; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.75rem; }
+
+        .blocks-container { display: flex; align-items: flex-end; justify-content: flex-start; gap: 8px; padding: 6px; background: white; border-radius: 6px; border: 1px solid #e5e7eb; }
+        .box-unit { width: 10px; height: 10px; border: 1px solid; flex-shrink: 0; }
+        .rod-container { display: flex; flex-direction: column-reverse; }
+        .box-unit.ten { background-color: #4ade80; border-color: #15803d; margin-top: -1px; }
+        .box-unit.one { background-color: #4ade80; border-color: #15803d; }
+        .tens-group { display: flex; gap: 4px; }
+        .ones-group { display: flex; flex-direction: column; gap: 2px; align-content: end; min-width: 15px; }
+
+        .place-value-table { width: 100%; border-collapse: collapse; text-align: center; font-family: 'Noto Sans', sans-serif; background: white;}
+        .place-value-table th, .place-value-table td { border: 1px solid #cbd5e1; padding: 4px; }
+        .place-value-table th { background-color: #f1f5f9; font-weight: bold; font-size: 0.8rem; }
+        
+        /* Fraction Styling */
+        .frac { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; vertical-align: middle; font-size: 0.85rem; font-weight: bold; margin: 0 2px;}
+        .frac > span:first-child { border-bottom: 1.5px solid #000; padding: 0 2px; line-height: 1.1; }
+        .frac > span:last-child { padding: 0 2px; line-height: 1.1; }
+
+        @media print { .box-unit { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+
+        <!-- ================= HALAMAN 1 (Soal 1 - 4) ================= -->
+        <section class="page">
+            <header class="page-header">
+                <div class="math-champs-header">
+                    <div class="flex items-center gap-4">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_zekej2_3984.png" alt="Ruangguru" class="h-10 md:h-12 w-auto object-contain">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_ngcsnc_6463.png" alt="SMA" class="h-14 md:h-16 w-auto object-contain">
+                    </div>
+                    <div class="text-right">
+                        <div class="text-base font-extrabold text-black uppercase tracking-wide">Tes Diagnostik 3 SD</div>
+                        <div class="text-[11px] text-black font-medium mt-1">Waktu : 30 menit</div>
+                    </div>
+                </div>
+                <div class="w-full h-0.5 bg-black mt-2"></div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="section-title">Pilih Satu Jawaban yang Paling Tepat.</div>
+                <div class="soal-grid">
+                    
+                    <!-- Q1 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">1.</span>
+                            <span class="text-justify">Berapakah jumlah bola pada gambar di bawah ini?</span>
+                        </div>
+                        <div class="flex flex-wrap justify-center gap-2 my-3 p-2 bg-white rounded border">
+                            <svg width="150" height="60" viewBox="0 0 150 60">
+                                <circle cx="15" cy="15" r="8" fill="#93c5fd" stroke="#2563eb" stroke-width="1.5"/>
+                                <circle cx="40" cy="15" r="8" fill="#93c5fd" stroke="#2563eb" stroke-width="1.5"/>
+                                <circle cx="65" cy="15" r="8" fill="#93c5fd" stroke="#2563eb" stroke-width="1.5"/>
+                                <circle cx="90" cy="15" r="8" fill="#93c5fd" stroke="#2563eb" stroke-width="1.5"/>
+                                <circle cx="115" cy="15" r="8" fill="#93c5fd" stroke="#2563eb" stroke-width="1.5"/>
+                                <circle cx="27" cy="30" r="8" fill="#93c5fd" stroke="#2563eb" stroke-width="1.5"/>
+                                <circle cx="52" cy="30" r="8" fill="#93c5fd" stroke="#2563eb" stroke-width="1.5"/>
+                                <circle cx="77" cy="30" r="8" fill="#93c5fd" stroke="#2563eb" stroke-width="1.5"/>
+                                <circle cx="102" cy="30" r="8" fill="#93c5fd" stroke="#2563eb" stroke-width="1.5"/>
+                                <circle cx="15" cy="45" r="8" fill="#93c5fd" stroke="#2563eb" stroke-width="1.5"/>
+                                <circle cx="40" cy="45" r="8" fill="#93c5fd" stroke="#2563eb" stroke-width="1.5"/>
+                                <circle cx="65" cy="45" r="8" fill="#93c5fd" stroke="#2563eb" stroke-width="1.5"/>
+                                <circle cx="90" cy="45" r="8" fill="#93c5fd" stroke="#2563eb" stroke-width="1.5"/>
+                                <circle cx="115" cy="45" r="8" fill="#93c5fd" stroke="#2563eb" stroke-width="1.5"/>
+                            </svg>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">14</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">13</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">15</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">12</span></label>
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">2.</span>
+                            <span class="text-justify">Hitunglah banyak bintang bersinar berikut ini!</span>
+                        </div>
+                        <div class="flex flex-wrap justify-center gap-1 my-3 p-2 bg-white rounded border text-xl text-yellow-500">
+                            ★★★★★★<br>
+                            ★★★★★<br>
+                            ★★★★★★★
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">17</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">18</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">19</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">16</span></label>
+                        </div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">3.</span>
+                            <span class="text-justify">Bilangan yang terdiri dari 4 puluhan dan 7 satuan adalah ...</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">74</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">11</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">47</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">407</span></label>
+                        </div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">4.</span>
+                            <span class="text-justify">Perhatikan gambar susunan balok di bawah ini. Berapakah nilai bilangannya?</span>
+                        </div>
+                        <div class="blocks-container mb-2">
+                            <div class="tens-group">
+                                <div class="rod-container"><div class="box-unit ten"></div><div class="box-unit ten"></div><div class="box-unit ten"></div><div class="box-unit ten"></div><div class="box-unit ten"></div><div class="box-unit ten"></div><div class="box-unit ten"></div><div class="box-unit ten"></div><div class="box-unit ten"></div><div class="box-unit ten"></div></div>
+                                <div class="rod-container"><div class="box-unit ten"></div><div class="box-unit ten"></div><div class="box-unit ten"></div><div class="box-unit ten"></div><div class="box-unit ten"></div><div class="box-unit ten"></div><div class="box-unit ten"></div><div class="box-unit ten"></div><div class="box-unit ten"></div><div class="box-unit ten"></div></div>
+                                <div class="rod-container"><div class="box-unit ten"></div><div class="box-unit ten"></div><div class="box-unit ten"></div><div class="box-unit ten"></div><div class="box-unit ten"></div><div class="box-unit ten"></div><div class="box-unit ten"></div><div class="box-unit ten"></div><div class="box-unit ten"></div><div class="box-unit ten"></div></div>
+                            </div>
+                            <div class="ones-group">
+                                <div class="box-unit one"></div><div class="box-unit one"></div>
+                            </div>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">5</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">32</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">23</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">302</span></label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <footer class="page-footer">
+                <div class="w-full text-center"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</div>
+            </footer>
+        </section>
+
+        <!-- ================= HALAMAN 2 (Soal 5 - 8) ================= -->
+        <section class="page">
+            <header class="page-header">
+                <div class="math-champs-header">
+                    <div class="flex items-center gap-4">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_zekej2_3984.png" alt="Ruangguru" class="h-10 md:h-12 w-auto object-contain">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_ngcsnc_6463.png" alt="SMA" class="h-14 md:h-16 w-auto object-contain">
+                    </div>
+                    <div class="text-right">
+                        <div class="text-base font-extrabold text-black uppercase tracking-wide">Tes Diagnostik 3 SD</div>
+                        <div class="text-[11px] text-black font-medium mt-1">Waktu : 30 menit</div>
+                    </div>
+                </div>
+                <div class="w-full h-0.5 bg-black mt-2"></div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="soal-grid">
+
+                    <!-- Q5 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">5.</span>
+                            <span class="text-justify">Hasil dari 54 + 32 adalah ...</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">85</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">96</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">22</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">86</span></label>
+                        </div>
+                    </div>
+
+                    <!-- Q6 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">6.</span>
+                            <span class="text-justify">Berapakah hasil dari 78 - 25?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">53</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">54</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">103</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">43</span></label>
+                        </div>
+                    </div>
+
+                    <!-- Q7 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">7.</span>
+                            <span class="text-justify">Budi memiliki 15 kelereng. Ia memberikan 4 kelereng kepada Andi. Berapa sisa kelereng Budi sekarang?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">19</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">10</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">11</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">12</span></label>
+                        </div>
+                    </div>
+
+                    <!-- Q8 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">8.</span>
+                            <span class="text-justify">Siti membeli 8 buku tulis. Ibu membelikan Siti 7 buku tulis lagi. Berapa jumlah buku tulis Siti semuanya?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">16</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">15</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">14</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">1</span></label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <footer class="page-footer">
+                <div class="w-full text-center"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</div>
+            </footer>
+        </section>
+
+        <!-- ================= HALAMAN 3 (Soal 9 - 12) ================= -->
+        <section class="page">
+            <header class="page-header">
+                <div class="math-champs-header">
+                    <div class="flex items-center gap-4">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_zekej2_3984.png" alt="Ruangguru" class="h-10 md:h-12 w-auto object-contain">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_ngcsnc_6463.png" alt="SMA" class="h-14 md:h-16 w-auto object-contain">
+                    </div>
+                    <div class="text-right">
+                        <div class="text-base font-extrabold text-black uppercase tracking-wide">Tes Diagnostik 3 SD</div>
+                        <div class="text-[11px] text-black font-medium mt-1">Waktu : 30 menit</div>
+                    </div>
+                </div>
+                <div class="w-full h-0.5 bg-black mt-2"></div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="soal-grid">
+
+                    <!-- Q9 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">9.</span>
+                            <span class="text-justify">Ada 4 kotak pensil. Setiap kotak berisi 3 pensil. Berapa jumlah seluruh pensil?</span>
+                        </div>
+                        <div class="flex justify-center gap-3 my-3">
+                            <svg width="220" height="50" viewBox="0 0 220 50">
+                                <g transform="translate(0,0)">
+                                    <rect x="0" y="5" width="40" height="40" rx="4" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+                                    <line x1="10" y1="10" x2="10" y2="40" stroke="#3b82f6" stroke-width="3"/>
+                                    <line x1="20" y1="10" x2="20" y2="40" stroke="#3b82f6" stroke-width="3"/>
+                                    <line x1="30" y1="10" x2="30" y2="40" stroke="#3b82f6" stroke-width="3"/>
+                                </g>
+                                <g transform="translate(55,0)">
+                                    <rect x="0" y="5" width="40" height="40" rx="4" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+                                    <line x1="10" y1="10" x2="10" y2="40" stroke="#3b82f6" stroke-width="3"/>
+                                    <line x1="20" y1="10" x2="20" y2="40" stroke="#3b82f6" stroke-width="3"/>
+                                    <line x1="30" y1="10" x2="30" y2="40" stroke="#3b82f6" stroke-width="3"/>
+                                </g>
+                                <g transform="translate(110,0)">
+                                    <rect x="0" y="5" width="40" height="40" rx="4" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+                                    <line x1="10" y1="10" x2="10" y2="40" stroke="#3b82f6" stroke-width="3"/>
+                                    <line x1="20" y1="10" x2="20" y2="40" stroke="#3b82f6" stroke-width="3"/>
+                                    <line x1="30" y1="10" x2="30" y2="40" stroke="#3b82f6" stroke-width="3"/>
+                                </g>
+                                <g transform="translate(165,0)">
+                                    <rect x="0" y="5" width="40" height="40" rx="4" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+                                    <line x1="10" y1="10" x2="10" y2="40" stroke="#3b82f6" stroke-width="3"/>
+                                    <line x1="20" y1="10" x2="20" y2="40" stroke="#3b82f6" stroke-width="3"/>
+                                    <line x1="30" y1="10" x2="30" y2="40" stroke="#3b82f6" stroke-width="3"/>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">12</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">7</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">11</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">13</span></label>
+                        </div>
+                    </div>
+
+                    <!-- Q10 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">10.</span>
+                            <span class="text-justify">Ibu memiliki 10 permen. Permen tersebut dibagikan sama rata kepada 2 anak. Berapa permen yang diterima setiap anak?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">8</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">12</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">4</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">5</span></label>
+                        </div>
+                    </div>
+
+                    <!-- Q11 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">11.</span>
+                            <span class="text-justify">Caca memiliki dua keping uang koin Rp500,00. Berapa jumlah uang Caca seluruhnya?</span>
+                        </div>
+                        <div class="flex justify-center gap-4 my-3">
+                            <svg width="120" height="60" viewBox="0 0 120 60">
+                                <circle cx="30" cy="30" r="25" fill="#e5e7eb" stroke="#374151" stroke-width="2"/>
+                                <text x="30" y="35" font-weight="bold" font-size="16" text-anchor="middle" fill="#111827">500</text>
+                                <circle cx="90" cy="30" r="25" fill="#e5e7eb" stroke="#374151" stroke-width="2"/>
+                                <text x="90" y="35" font-weight="bold" font-size="16" text-anchor="middle" fill="#111827">500</text>
+                            </svg>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">Rp1.000,00</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">Rp500,00</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">Rp100,00</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">Rp10.000,00</span></label>
+                        </div>
+                    </div>
+
+                    <!-- Q12 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">12.</span>
+                            <span class="text-justify">Dika memiliki uang satu keping Rp500,00 dan tiga keping Rp100,00. Berapa total uang Dika?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">Rp600,00</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">Rp503,00</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">Rp800,00</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">Rp900,00</span></label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <footer class="page-footer">
+                <div class="w-full text-center"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</div>
+            </footer>
+        </section>
+
+        <!-- ================= HALAMAN 4 (Soal 13 - 16) ================= -->
+        <section class="page">
+            <header class="page-header">
+                <div class="math-champs-header">
+                    <div class="flex items-center gap-4">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_zekej2_3984.png" alt="Ruangguru" class="h-10 md:h-12 w-auto object-contain">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_ngcsnc_6463.png" alt="SMA" class="h-14 md:h-16 w-auto object-contain">
+                    </div>
+                    <div class="text-right">
+                        <div class="text-base font-extrabold text-black uppercase tracking-wide">Tes Diagnostik 3 SD</div>
+                        <div class="text-[11px] text-black font-medium mt-1">Waktu : 30 menit</div>
+                    </div>
+                </div>
+                <div class="w-full h-0.5 bg-black mt-2"></div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="soal-grid">
+
+                    <!-- Q13 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">13.</span>
+                            <span class="text-justify">Perhatikan gambar berikut! Berapa panjang pensil jika diukur menggunakan penghapus?</span>
+                        </div>
+                        <div class="flex justify-center my-3 bg-white p-2 rounded border">
+                            <svg width="220" height="60" viewBox="0 0 220 60">
+                                <!-- Pensil -->
+                                <rect x="10" y="10" width="160" height="15" fill="#fef08a" stroke="#ca8a04"/>
+                                <polygon points="170,10 190,17.5 170,25" fill="#fdba74" stroke="#c2410c"/>
+                                <polygon points="182,14.5 190,17.5 182,20.5" fill="#1f2937"/>
+                                <!-- Penghapus -->
+                                <rect x="15" y="35" width="30" height="15" rx="3" fill="#bfdbfe" stroke="#3b82f6"/>
+                                <rect x="50" y="35" width="30" height="15" rx="3" fill="#bfdbfe" stroke="#3b82f6"/>
+                                <rect x="85" y="35" width="30" height="15" rx="3" fill="#bfdbfe" stroke="#3b82f6"/>
+                                <rect x="120" y="35" width="30" height="15" rx="3" fill="#bfdbfe" stroke="#3b82f6"/>
+                                <rect x="155" y="35" width="30" height="15" rx="3" fill="#bfdbfe" stroke="#3b82f6"/>
+                            </svg>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">4 penghapus</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">6 penghapus</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">5 penghapus</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">1 penghapus</span></label>
+                        </div>
+                    </div>
+
+                    <!-- Q14 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">14.</span>
+                            <span class="text-justify">Tali merah panjangnya 7 jengkal. Tali biru panjangnya 4 jengkal. Manakah pernyataan yang benar?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">Tali biru lebih panjang dari tali merah</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">Tali merah lebih panjang dari tali biru</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">Keduanya sama panjang</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">Tidak bisa diukur</span></label>
+                        </div>
+                    </div>
+
+                    <!-- Q15 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">15.</span>
+                            <span class="text-justify">Perhatikan gambar jam berikut! Jam berapakah yang ditunjukkan?</span>
+                        </div>
+                        <div class="flex justify-center my-2">
+                            <svg width="100" height="100" viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="45" fill="white" stroke="black" stroke-width="2"/>
+                                <g font-size="11" font-weight="bold" text-anchor="middle" dominant-baseline="central" fill="black">
+                                    <text x="67" y="20.5">1</text>
+                                    <text x="79.5" y="33">2</text>
+                                    <text x="84" y="50">3</text>
+                                    <text x="79.5" y="67">4</text>
+                                    <text x="67" y="79.5">5</text>
+                                    <text x="50" y="84">6</text>
+                                    <text x="33" y="79.5">7</text>
+                                    <text x="20.5" y="67">8</text>
+                                    <text x="16" y="50">9</text>
+                                    <text x="20.5" y="33">10</text>
+                                    <text x="33" y="20.5">11</text>
+                                    <text x="50" y="16">12</text>
+                                </g>
+                                <!-- Ticks -->
+                                <line x1="50" y1="5" x2="50" y2="10" stroke="black" stroke-width="2"/>
+                                <line x1="95" y1="50" x2="90" y2="50" stroke="black" stroke-width="2"/>
+                                <line x1="50" y1="95" x2="50" y2="90" stroke="black" stroke-width="2"/>
+                                <line x1="5" y1="50" x2="10" y2="50" stroke="black" stroke-width="2"/>
+                                <!-- Minute Hand (12) -->
+                                <line x1="50" y1="50" x2="50" y2="18" stroke="blue" stroke-width="3" stroke-linecap="round"/>
+                                <!-- Hour Hand (4) -->
+                                <line x1="50" y1="50" x2="65" y2="58.6" stroke="red" stroke-width="4" stroke-linecap="round"/>
+                                <circle cx="50" cy="50" r="3" fill="black"/>
+                            </svg>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">Pukul 04.00</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">Pukul 12.04</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">Pukul 12.20</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">Pukul 04.12</span></label>
+                        </div>
+                    </div>
+
+                    <!-- Q16 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">16.</span>
+                            <span class="text-justify">Jarum pendek menunjuk di antara angka 8 dan 9. Jarum panjang menunjuk tepat di angka 6. Jam berapakah sekarang?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">Pukul 08.06</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">Pukul 08.30</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">Pukul 09.30</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">Pukul 06.40</span></label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <footer class="page-footer">
+                <div class="w-full text-center"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</div>
+            </footer>
+        </section>
+
+        <!-- ================= HALAMAN 5 (Q17-20) ================= -->
+        <section class="page">
+            <header class="page-header">
+                <div class="math-champs-header">
+                    <div class="flex items-center gap-4">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_zekej2_3984.png" alt="Ruangguru" class="h-10 md:h-12 w-auto object-contain">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_ngcsnc_6463.png" alt="SMA" class="h-14 md:h-16 w-auto object-contain">
+                    </div>
+                    <div class="text-right">
+                        <div class="text-base font-extrabold text-black uppercase tracking-wide">Tes Diagnostik 3 SD</div>
+                        <div class="text-[11px] text-black font-medium mt-1">Waktu : 30 menit</div>
+                    </div>
+                </div>
+                <div class="w-full h-0.5 bg-black mt-2"></div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="soal-grid mb-4">
+                    <!-- Q17 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">17.</span>
+                            <span class="text-justify">Bangun datar di bawah ini yang memiliki 3 sisi dan 3 titik sudut disebut ...</span>
+                        </div>
+                        <div class="flex justify-center my-3">
+                            <svg width="80" height="70" viewBox="0 0 100 86">
+                                <polygon points="50,0 100,86 0,86" fill="#bbf7d0" stroke="#16a34a" stroke-width="3"/>
+                            </svg>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">Persegi panjang</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">Segitiga</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">Lingkaran</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">Persegi</span></label>
+                        </div>
+                    </div>
+
+                    <!-- Q18 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">18.</span>
+                            <span class="text-justify">Manakah dari bangun datar berikut yang sisinya ada 4 dan keempat sisinya sama panjang?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">Persegi panjang</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">Persegi</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">Lingkaran</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">Segitiga</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="font-bold text-sm mb-3 mt-2">Perhatikan diagram gambar buah kesukaan siswa berikut untuk menjawab soal nomor 19 dan 20!</div>
+                <div class="flex justify-center mb-4">
+                    <table class="place-value-table w-3/4 mx-auto text-sm">
+                        <tr>
+                            <th class="w-1/3 text-left pl-3">Apel</th>
+                            <td class="text-left pl-2">🔴 🔴 🔴 🔴</td>
+                        </tr>
+                        <tr>
+                            <th class="text-left pl-3">Jeruk</th>
+                            <td class="text-left pl-2">🟠 🟠</td>
+                        </tr>
+                        <tr>
+                            <th class="text-left pl-3">Pisang</th>
+                            <td class="text-left pl-2">🍌 🍌 🍌 🍌 🍌</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="soal-grid">
+                    <!-- Q19 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">19.</span>
+                            <span class="text-justify">Berdasarkan diagram gambar di atas, buah apakah yang paling banyak disukai?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">Apel</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">Jeruk</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">Pisang</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">Semangka</span></label>
+                        </div>
+                    </div>
+
+                    <!-- Q20 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">20.</span>
+                            <span class="text-justify">Berapa banyak siswa yang menyukai buah apel berdasarkan diagram tersebut?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">5</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">4</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">2</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">3</span></label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <footer class="page-footer">
+                <div class="w-full text-center"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</div>
+            </footer>
+        </section>
+
+        <!-- ================= HALAMAN 6 (Soal 21 - 24) ================= -->
+        <section class="page">
+            <header class="page-header">
+                <div class="math-champs-header">
+                    <div class="flex items-center gap-4">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_zekej2_3984.png" alt="Ruangguru" class="h-10 md:h-12 w-auto object-contain">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_ngcsnc_6463.png" alt="SMA" class="h-14 md:h-16 w-auto object-contain">
+                    </div>
+                    <div class="text-right">
+                        <div class="text-base font-extrabold text-black uppercase tracking-wide">Tes Diagnostik 3 SD</div>
+                        <div class="text-[11px] text-black font-medium mt-1">Waktu : 30 menit</div>
+                    </div>
+                </div>
+                <div class="w-full h-0.5 bg-black mt-2"></div>
+            </header>
+
+            <div class="content-wrapper">
+
+                <div class="soal-grid">
+                    <!-- K2 Q1 -> 21 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">21.</span>
+                            <span class="text-justify">Lambang bilangan dari <b>4 ratusan + 6 satuan + 2 puluhan</b> adalah ...</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">462</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">426</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">408</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">624</span></label>
+                        </div>
+                    </div>
+
+                    <!-- K2 Q2 -> 22 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">22.</span>
+                            <span class="text-justify">Bilangan <b>"Tujuh ratus lima"</b> jika ditulis dalam bentuk angka menjadi ...</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">75</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">7005</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">750</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">705</span></label>
+                        </div>
+                    </div>
+                    
+                    <!-- K2 Q3 -> 23 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">23.</span>
+                            <span class="text-justify">Hasil pengurangan dari <b>603 - 247</b> adalah ...</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">444</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">356</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">366</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">456</span></label>
+                        </div>
+                    </div>
+
+                    <!-- K2 Q4 -> 24 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">24.</span>
+                            <span class="text-justify">Hasil penjumlahan dari <b>358 + 174</b> adalah ...</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">422</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">522</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">532</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">432</span></label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <footer class="page-footer">
+                <div class="w-full text-center"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</div>
+            </footer>
+        </section>
+
+        <!-- ================= HALAMAN 7 (Soal 25 - 28) ================= -->
+        <section class="page">
+            <header class="page-header">
+                <div class="math-champs-header">
+                    <div class="flex items-center gap-4">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_zekej2_3984.png" alt="Ruangguru" class="h-10 md:h-12 w-auto object-contain">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_ngcsnc_6463.png" alt="SMA" class="h-14 md:h-16 w-auto object-contain">
+                    </div>
+                    <div class="text-right">
+                        <div class="text-base font-extrabold text-black uppercase tracking-wide">Tes Diagnostik 3 SD</div>
+                        <div class="text-[11px] text-black font-medium mt-1">Waktu : 30 menit</div>
+                    </div>
+                </div>
+                <div class="w-full h-0.5 bg-black mt-2"></div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="soal-grid">
+
+                    <!-- K2 Q5 -> 25 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">25.</span>
+                            <span class="text-justify">Di dalam bus sekolah terdapat 35 orang anak. Saat berhenti di halte, sebanyak 12 anak turun, dan 8 anak baru naik ke dalam bus. Berapa jumlah anak di dalam bus sekarang?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">15 anak</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">55 anak</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">31 anak</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">23 anak</span></label>
+                        </div>
+                    </div>
+
+                    <!-- K2 Q6 -> 26 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">26.</span>
+                            <span class="text-justify">Rina memiliki 120 butir kelereng. Doni memiliki kelereng 25 butir <i>lebih sedikit</i> dari Rina. Berapakah jumlah kelereng Rina dan Doni jika digabungkan?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">95 butir</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">145 butir</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">265 butir</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">215 butir</span></label>
+                        </div>
+                    </div>
+
+                    <!-- K2 Q7 -> 27 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">27.</span>
+                            <span class="text-justify">Pak Guru memiliki 40 buah permen yang akan dibagikan kepada 5 orang anak sama banyak. Berapa permen yang diterima masing-masing anak?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">45 buah</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">8 buah</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">35 buah</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">9 buah</span></label>
+                        </div>
+                    </div>
+
+                    <!-- K2 Q8 -> 28 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">28.</span>
+                            <span class="text-justify">Di sebuah peternakan terdapat 4 ekor sapi dan 3 ekor ayam. Berapa jumlah seluruh kaki hewan-hewan tersebut?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">14 kaki</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">22 kaki</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">28 kaki</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">7 kaki</span></label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <footer class="page-footer">
+                <div class="w-full text-center"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</div>
+            </footer>
+        </section>
+
+        <!-- ================= HALAMAN 8 (Soal 29 - 32) ================= -->
+        <section class="page">
+            <header class="page-header">
+                <div class="math-champs-header">
+                    <div class="flex items-center gap-4">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_zekej2_3984.png" alt="Ruangguru" class="h-10 md:h-12 w-auto object-contain">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_ngcsnc_6463.png" alt="SMA" class="h-14 md:h-16 w-auto object-contain">
+                    </div>
+                    <div class="text-right">
+                        <div class="text-base font-extrabold text-black uppercase tracking-wide">Tes Diagnostik 3 SD</div>
+                        <div class="text-[11px] text-black font-medium mt-1">Waktu : 30 menit</div>
+                    </div>
+                </div>
+                <div class="w-full h-0.5 bg-black mt-2"></div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="soal-grid">
+                    
+                    <!-- K2 Q9 -> 29 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">29.</span>
+                            <span class="text-justify flex flex-col">
+                                <span>Perhatikan pola bilangan berikut: <b>2, 4, 8, 14, 22, ...</b></span>
+                                <span>Bilangan yang tepat untuk mengisi titik-titik tersebut adalah ...</span>
+                            </span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">30</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">34</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">32</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">24</span></label>
+                        </div>
+                    </div>
+
+                    <!-- K2 Q10 -> 30 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">30.</span>
+                            <span class="text-justify">Di taman bermain, terdapat beberapa sepeda roda dua dan sepeda roda tiga. Total ada 5 buah sepeda dan keseluruhan rodanya berjumlah 12. Berapa banyak <b>sepeda roda tiga</b> yang ada di taman tersebut?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">3 sepeda</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">5 sepeda</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">4 sepeda</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">2 sepeda</span></label>
+                        </div>
+                    </div>
+
+                    <!-- K2 Q11 -> 31 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">31.</span>
+                            <span class="text-justify">Perhatikan gambar di bawah ini! Nilai pecahan yang ditunjukkan oleh bagian yang diarsir (berwarna abu-abu) adalah ...</span>
+                        </div>
+                        <div class="flex justify-center my-2">
+                            <svg width="80" height="80" viewBox="0 0 100 100">
+                                <path d="M50,50 L95,50 A45,45 0 1,1 27.5,11.03 Z" fill="#9ca3af" stroke="black"/>
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="black" stroke-width="2"/>
+                                <line x1="50" y1="50" x2="95" y2="50" stroke="black" stroke-width="1.5"/>
+                                <line x1="50" y1="50" x2="72.5" y2="88.97" stroke="black" stroke-width="1.5"/>
+                                <line x1="50" y1="50" x2="27.5" y2="88.97" stroke="black" stroke-width="1.5"/>
+                                <line x1="50" y1="50" x2="5" y2="50" stroke="black" stroke-width="1.5"/>
+                                <line x1="50" y1="50" x2="27.5" y2="11.03" stroke="black" stroke-width="1.5"/>
+                                <line x1="50" y1="50" x2="72.5" y2="11.03" stroke="black" stroke-width="1.5"/>
+                            </svg>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold frac"><span>4</span><span>2</span></span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold frac"><span>6</span><span>4</span></span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold frac"><span>4</span><span>6</span></span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold frac"><span>2</span><span>6</span></span></label>
+                        </div>
+                    </div>
+
+                    <!-- K2 Q12 -> 32 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">32.</span>
+                            <span class="text-justify">Di antara pecahan-pecahan berikut, manakah yang nilainya <b>paling besar</b>?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold frac"><span>1</span><span>8</span></span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold frac"><span>1</span><span>2</span></span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold frac"><span>1</span><span>5</span></span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold frac"><span>1</span><span>4</span></span></label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <footer class="page-footer">
+                <div class="w-full text-center"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</div>
+            </footer>
+        </section>
+
+        <!-- ================= HALAMAN 9 (Soal 33 - 36) ================= -->
+        <section class="page">
+            <header class="page-header">
+                <div class="math-champs-header">
+                    <div class="flex items-center gap-4">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_zekej2_3984.png" alt="Ruangguru" class="h-10 md:h-12 w-auto object-contain">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_ngcsnc_6463.png" alt="SMA" class="h-14 md:h-16 w-auto object-contain">
+                    </div>
+                    <div class="text-right">
+                        <div class="text-base font-extrabold text-black uppercase tracking-wide">Tes Diagnostik 3 SD</div>
+                        <div class="text-[11px] text-black font-medium mt-1">Waktu : 30 menit</div>
+                    </div>
+                </div>
+                <div class="w-full h-0.5 bg-black mt-2"></div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="soal-grid">
+
+                    <!-- K2 Q13 -> 33 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">33.</span>
+                            <span class="text-justify">Budi membeli buku seharga Rp6.000 dan pensil seharga Rp3.500. Budi membayar menggunakan 1 lembar uang Rp10.000. Berapa uang kembalian yang diterima Budi?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">Rp1.500</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">Rp9.500</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">Rp1.000</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">Rp500</span></label>
+                        </div>
+                    </div>
+
+                    <!-- K2 Q14 -> 34 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">34.</span>
+                            <span class="text-justify">Siti menabung dengan 3 lembar uang dua ribuan dan 4 keping uang lima ratusan. Berapa jumlah uang tabungan Siti tersebut?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">Rp2.600</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">Rp10.000</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">Rp8.000</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">Rp6.500</span></label>
+                        </div>
+                    </div>
+
+                    <!-- K2 Q15 -> 35 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">35.</span>
+                            <span class="text-justify">Perhatikan jam analog di bawah ini! Pukul berapakah yang ditunjukkan oleh jam di atas?</span>
+                        </div>
+                        <div class="flex justify-center my-2">
+                            <svg width="100" height="100" viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="45" fill="white" stroke="black" stroke-width="2"/>
+                                <g font-size="11" font-weight="bold" text-anchor="middle" dominant-baseline="central" fill="black">
+                                    <text x="67" y="20.5">1</text>
+                                    <text x="79.5" y="33">2</text>
+                                    <text x="84" y="50">3</text>
+                                    <text x="79.5" y="67">4</text>
+                                    <text x="67" y="79.5">5</text>
+                                    <text x="50" y="84">6</text>
+                                    <text x="33" y="79.5">7</text>
+                                    <text x="20.5" y="67">8</text>
+                                    <text x="16" y="50">9</text>
+                                    <text x="20.5" y="33">10</text>
+                                    <text x="33" y="20.5">11</text>
+                                    <text x="50" y="16">12</text>
+                                </g>
+                                <!-- Ticks -->
+                                <line x1="50" y1="5" x2="50" y2="10" stroke="black" stroke-width="2"/>
+                                <line x1="95" y1="50" x2="90" y2="50" stroke="black" stroke-width="2"/>
+                                <line x1="50" y1="95" x2="50" y2="90" stroke="black" stroke-width="2"/>
+                                <line x1="5" y1="50" x2="10" y2="50" stroke="black" stroke-width="2"/>
+                                <!-- Minute Hand (3) -->
+                                <line x1="50" y1="50" x2="80" y2="50" stroke="black" stroke-width="3" stroke-linecap="round"/>
+                                <!-- Hour Hand (10.15) -->
+                                <line x1="50" y1="50" x2="34" y2="40" stroke="black" stroke-width="4" stroke-linecap="round"/>
+                                <circle cx="50" cy="50" r="3" fill="black"/>
+                            </svg>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">Pukul 03.50</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">Pukul 10.03</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">Pukul 10.15</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">Pukul 11.15</span></label>
+                        </div>
+                    </div>
+
+                    <!-- K2 Q16 -> 36 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">36.</span>
+                            <span class="text-justify">Kereta api berangkat dari stasiun pukul 07.30. Perjalanan menuju stasiun berikutnya memakan waktu 45 menit. Pukul berapa kereta api tersebut tiba?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">Pukul 07.75</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">Pukul 08.15</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">Pukul 08.45</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">Pukul 07.15</span></label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <footer class="page-footer">
+                <div class="w-full text-center"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</div>
+            </footer>
+        </section>
+
+        <!-- ================= HALAMAN 10 (Soal 37 - 40) ================= -->
+        <section class="page">
+            <header class="page-header">
+                <div class="math-champs-header">
+                    <div class="flex items-center gap-4">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_zekej2_3984.png" alt="Ruangguru" class="h-10 md:h-12 w-auto object-contain">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_ngcsnc_6463.png" alt="SMA" class="h-14 md:h-16 w-auto object-contain">
+                    </div>
+                    <div class="text-right">
+                        <div class="text-base font-extrabold text-black uppercase tracking-wide">Tes Diagnostik 3 SD</div>
+                        <div class="text-[11px] text-black font-medium mt-1">Waktu : 30 menit</div>
+                    </div>
+                </div>
+                <div class="w-full h-0.5 bg-black mt-2"></div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="soal-grid mb-4">
+                    <!-- K2 Q17 -> 37 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">37.</span>
+                            <span class="text-justify">Alat ukur dan satuan yang paling tepat digunakan untuk mengukur <b>panjang penghapus pensil</b> adalah ...</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">Meteran gulung, dengan satuan meter (m)</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">Penggaris, dengan satuan sentimeter (cm)</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">Timbangan, dengan satuan gram (g)</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">Penggaris, dengan satuan kilogram (kg)</span></label>
+                        </div>
+                    </div>
+
+                    <!-- K2 Q18 -> 38 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">38.</span>
+                            <span class="text-justify">Tinggi sebatang pohon kelapa adalah 3 meter. Jika diubah ke dalam satuan sentimeter (cm), maka tinggi pohon tersebut adalah ...</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">30 cm</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">3 cm</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">300 cm</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">3.000 cm</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="font-bold text-sm mb-2 mt-2">Gunakan grafik gambar (piktogram) di bawah ini untuk menjawab soal nomor 39 dan 40!</div>
+                <div class="flex justify-center mb-4">
+                    <table class="place-value-table w-4/5 mx-auto text-sm">
+                        <tr><th colspan="2" class="text-center bg-gray-200 py-1">Hasil Panen Apel Paman Petani</th></tr>
+                        <tr><th class="w-1/4">Hari</th><th>Jumlah Keranjang</th></tr>
+                        <tr><td class="font-bold">Senin</td><td class="text-left pl-4">🍎 🍎 🍎 🍎</td></tr>
+                        <tr><td class="font-bold">Selasa</td><td class="text-left pl-4">🍎 🍎 🍎 🍎 🍎 🍎</td></tr>
+                        <tr><td class="font-bold">Rabu</td><td class="text-left pl-4">🍎 🍎</td></tr>
+                        <tr><td colspan="2" class="italic text-xs bg-gray-50 text-gray-600">Keterangan: Setiap 🍎 mewakili <b>5 kg apel</b></td></tr>
+                    </table>
+                </div>
+
+                <div class="soal-grid">
+                    <!-- K2 Q19 -> 39 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">39.</span>
+                            <span class="text-justify">Berapa kilogram (kg) berat apel yang dipanen Paman pada hari Senin?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">4 kg</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">20 kg</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">9 kg</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">15 kg</span></label>
+                        </div>
+                    </div>
+
+                    <!-- K2 Q20 -> 40 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">40.</span>
+                            <span class="text-justify">Berapakah selisih (perbedaan) berat panen apel antara hari Selasa dan hari Senin?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">2 kg</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">50 kg</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">30 kg</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">10 kg</span></label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <footer class="page-footer">
+                <div class="w-full text-center"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</div>
+            </footer>
+        </section>
+
+        <!-- ================= HALAMAN 11 (Soal 41 - 44) ================= -->
+        <section class="page">
+            <header class="page-header">
+                <div class="math-champs-header">
+                    <div class="flex items-center gap-4">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_zekej2_3984.png" alt="Ruangguru" class="h-10 md:h-12 w-auto object-contain">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_ngcsnc_6463.png" alt="SMA" class="h-14 md:h-16 w-auto object-contain">
+                    </div>
+                    <div class="text-right">
+                        <div class="text-base font-extrabold text-black uppercase tracking-wide">Tes Diagnostik 3 SD</div>
+                        <div class="text-[11px] text-black font-medium mt-1">Waktu : 30 menit</div>
+                    </div>
+                </div>
+                <div class="w-full h-0.5 bg-black mt-2"></div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="soal-grid">
+                    
+                    <!-- K3 Q1 -> 41 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">41.</span>
+                            <span class="text-justify">Sebuah bilangan tersusun dari 4 ribuan, 15 ratusan, 3 puluhan, dan 12 satuan. Bilangan berapakah itu?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">5.542</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">41.542</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">5.532</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">4.662</span></label>
+                        </div>
+                    </div>
+
+                    <!-- K3 Q2 -> 42 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">42.</span>
+                            <span class="text-justify">Budi memiliki 3 lembar uang seribuan, 12 keping koin seratusan, dan 5 koin satuan. Berapa nilai total uang Budi?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">Rp 4.205</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">Rp 3.125</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">Rp 4.250</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">Rp 3.205</span></label>
+                        </div>
+                    </div>
+
+                    <!-- K3 Q3 -> 43 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">43.</span>
+                            <span class="text-justify">Hasil dari 5.032 - 1.847 adalah ...</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">3.185</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">4.815</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">3.285</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">4.185</span></label>
+                        </div>
+                    </div>
+
+                    <!-- K3 Q4 -> 44 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">44.</span>
+                            <span class="text-justify">Hasil dari 3.876 + 2.459 adalah ...</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">6.335</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">5.225</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">6.235</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">6.325</span></label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <footer class="page-footer">
+                <div class="w-full text-center"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</div>
+            </footer>
+        </section>
+
+        <!-- ================= HALAMAN 12 (Soal 45 - 48) ================= -->
+        <section class="page">
+            <header class="page-header">
+                <div class="math-champs-header">
+                    <div class="flex items-center gap-4">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_zekej2_3984.png" alt="Ruangguru" class="h-10 md:h-12 w-auto object-contain">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_ngcsnc_6463.png" alt="SMA" class="h-14 md:h-16 w-auto object-contain">
+                    </div>
+                    <div class="text-right">
+                        <div class="text-base font-extrabold text-black uppercase tracking-wide">Tes Diagnostik 3 SD</div>
+                        <div class="text-[11px] text-black font-medium mt-1">Waktu : 30 menit</div>
+                    </div>
+                </div>
+                <div class="w-full h-0.5 bg-black mt-2"></div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="soal-grid">
+
+                    <!-- K3 Q5 -> 45 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">45.</span>
+                            <span class="text-justify">8 × 7 = ...</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">56</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">54</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">48</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">64</span></label>
+                        </div>
+                    </div>
+
+                    <!-- K3 Q6 -> 46 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">46.</span>
+                            <span class="text-justify">54 : 6 = ...</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">9</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">8</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">7</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">60</span></label>
+                        </div>
+                    </div>
+
+                    <!-- K3 Q7 -> 47 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">47.</span>
+                            <span class="text-justify">Ibu memiliki 45 permen yang akan dibagikan sama rata kepada 6 anak. Berapa sisa permen yang <b>tidak</b> bisa dibagikan?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">3</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">7</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">5</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">2</span></label>
+                        </div>
+                    </div>
+
+                    <!-- K3 Q8 -> 48 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">48.</span>
+                            <span class="text-justify">Hasil dari 38 : 5 adalah ...</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">7 sisa 3</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">8 sisa 2</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">7 sisa 2</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">6 sisa 8</span></label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <footer class="page-footer">
+                <div class="w-full text-center"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</div>
+            </footer>
+        </section>
+
+        <!-- ================= HALAMAN 13 (Soal 49 - 52) ================= -->
+        <section class="page">
+            <header class="page-header">
+                <div class="math-champs-header">
+                    <div class="flex items-center gap-4">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_zekej2_3984.png" alt="Ruangguru" class="h-10 md:h-12 w-auto object-contain">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_ngcsnc_6463.png" alt="SMA" class="h-14 md:h-16 w-auto object-contain">
+                    </div>
+                    <div class="text-right">
+                        <div class="text-base font-extrabold text-black uppercase tracking-wide">Tes Diagnostik 3 SD</div>
+                        <div class="text-[11px] text-black font-medium mt-1">Waktu : 30 menit</div>
+                    </div>
+                </div>
+                <div class="w-full h-0.5 bg-black mt-2"></div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="soal-grid">
+
+                    <!-- K3 Q9 -> 49 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">49.</span>
+                            <span class="text-justify">43 × 6 = ...</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">258</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">2.418</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">248</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">298</span></label>
+                        </div>
+                    </div>
+
+                    <!-- K3 Q10 -> 50 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">50.</span>
+                            <span class="text-justify">96 : 3 = ...</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">32</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">30</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">33</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">22</span></label>
+                        </div>
+                    </div>
+
+                    <!-- K3 Q11 -> 51 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">51.</span>
+                            <span class="text-justify">Di toko buku terdapat 4 kotak pensil. Setiap kotak berisi 8 pensil. Jika terjual 10 pensil, berapa jumlah pensil yang tersisa sekarang?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">22</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">2</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">42</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">32</span></label>
+                        </div>
+                    </div>
+
+                    <!-- K3 Q12 -> 52 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">52.</span>
+                            <span class="text-justify">Rina memiliki uang Rp 10.000. Ia membeli 2 buku yang masing-masing harganya Rp 3.000. Berapakah uang kembalian Rina?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">Rp 4.000</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">Rp 7.000</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">Rp 6.000</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">Rp 1.000</span></label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <footer class="page-footer">
+                <div class="w-full text-center"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</div>
+            </footer>
+        </section>
+
+        <!-- ================= HALAMAN 14 (Soal 53 - 56) ================= -->
+        <section class="page">
+            <header class="page-header">
+                <div class="math-champs-header">
+                    <div class="flex items-center gap-4">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_zekej2_3984.png" alt="Ruangguru" class="h-10 md:h-12 w-auto object-contain">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_ngcsnc_6463.png" alt="SMA" class="h-14 md:h-16 w-auto object-contain">
+                    </div>
+                    <div class="text-right">
+                        <div class="text-base font-extrabold text-black uppercase tracking-wide">Tes Diagnostik 3 SD</div>
+                        <div class="text-[11px] text-black font-medium mt-1">Waktu : 30 menit</div>
+                    </div>
+                </div>
+                <div class="w-full h-0.5 bg-black mt-2"></div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="soal-grid">
+
+                    <!-- K3 Q13 -> 53 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">53.</span>
+                            <span class="text-justify">Perhatikan gambar lingkaran di bawah ini! Pecahan manakah yang senilai dengan bagian yang diarsir pada gambar?</span>
+                        </div>
+                        <div class="flex justify-center my-3">
+                            <svg width="80" height="80" viewBox="0 0 100 100">
+                                <path d="M50,50 L95,50 A45,45 0 0,0 50,5 Z" fill="#9ca3af" stroke="black"/>
+                                <path d="M50,50 L5,50 A45,45 0 0,0 50,95 Z" fill="#9ca3af" stroke="black"/>
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="black" stroke-width="2"/>
+                                <line x1="50" y1="5" x2="50" y2="95" stroke="black" stroke-width="2"/>
+                                <line x1="5" y1="50" x2="95" y2="50" stroke="black" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold frac"><span>1</span><span>2</span></span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold frac"><span>2</span><span>8</span></span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold frac"><span>4</span><span>2</span></span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold frac"><span>1</span><span>4</span></span></label>
+                        </div>
+                    </div>
+
+                    <!-- K3 Q14 -> 54 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">54.</span>
+                            <span class="text-justify">Bentuk pecahan paling sederhana dari <span class="frac"><span>6</span><span>9</span></span> adalah...</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold frac"><span>2</span><span>3</span></span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold frac"><span>3</span><span>6</span></span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold frac"><span>12</span><span>18</span></span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold frac"><span>1</span><span>3</span></span></label>
+                        </div>
+                    </div>
+
+                    <!-- K3 Q15 -> 55 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">55.</span>
+                            <span class="text-justify">Di antara pernyataan perbandingan di bawah ini, manakah yang benar?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold"><span class="frac"><span>1</span><span>3</span></span> > <span class="frac"><span>1</span><span>4</span></span></span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold"><span class="frac"><span>1</span><span>4</span></span> > <span class="frac"><span>1</span><span>3</span></span></span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold"><span class="frac"><span>1</span><span>3</span></span> = <span class="frac"><span>1</span><span>4</span></span></span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold"><span class="frac"><span>1</span><span>4</span></span> = <span class="frac"><span>4</span><span>1</span></span></span></label>
+                        </div>
+                    </div>
+
+                    <!-- K3 Q16 -> 56 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">56.</span>
+                            <span class="text-justify">Tanda perbandingan yang tepat untuk menghubungkan pecahan <span class="frac"><span>2</span><span>5</span></span> dan <span class="frac"><span>4</span><span>10</span></span> adalah ...</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">=</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold"><</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">></span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">+</span></label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <footer class="page-footer">
+                <div class="w-full text-center"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</div>
+            </footer>
+        </section>
+
+        <!-- ================= HALAMAN 15 (Soal 57 - 60) ================= -->
+        <section class="page">
+            <header class="page-header">
+                <div class="math-champs-header">
+                    <div class="flex items-center gap-4">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_zekej2_3984.png" alt="Ruangguru" class="h-10 md:h-12 w-auto object-contain">
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_ngcsnc_6463.png" alt="SMA" class="h-14 md:h-16 w-auto object-contain">
+                    </div>
+                    <div class="text-right">
+                        <div class="text-base font-extrabold text-black uppercase tracking-wide">Tes Diagnostik 3 SD</div>
+                        <div class="text-[11px] text-black font-medium mt-1">Waktu : 30 menit</div>
+                    </div>
+                </div>
+                <div class="w-full h-0.5 bg-black mt-2"></div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="soal-grid">
+
+                    <!-- K3 Q17 -> 57 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">57.</span>
+                            <span class="text-justify">Hasil penjumlahan dari <span class="frac"><span>2</span><span>7</span></span> + <span class="frac"><span>3</span><span>7</span></span> = ...</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold frac"><span>5</span><span>7</span></span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold frac"><span>5</span><span>14</span></span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold frac"><span>6</span><span>7</span></span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold frac"><span>6</span><span>14</span></span></label>
+                        </div>
+                    </div>
+
+                    <!-- K3 Q18 -> 58 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">58.</span>
+                            <span class="text-justify">Hasil dari <span class="frac"><span>8</span><span>10</span></span> - <span class="frac"><span>3</span><span>10</span></span> = ...</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold frac"><span>5</span><span>10</span></span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold frac"><span>5</span><span>0</span></span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold frac"><span>11</span><span>10</span></span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold frac"><span>11</span><span>0</span></span></label>
+                        </div>
+                    </div>
+
+                    <!-- K3 Q19 -> 59 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">59.</span>
+                            <span class="text-justify">Perhatikan gambar persegi panjang di bawah ini! Berapakah <b>keliling</b> persegi panjang tersebut?</span>
+                        </div>
+                        <div class="flex justify-center my-4">
+                            <svg width="180" height="120" viewBox="0 0 180 120">
+                                <rect x="30" y="20" width="120" height="80" fill="none" stroke="black" stroke-width="2"/>
+                                <text x="90" y="115" font-size="12" text-anchor="middle">6 cm</text>
+                                <text x="15" y="65" font-size="12" text-anchor="middle">4 cm</text>
+                            </svg>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">20 cm</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">24 cm</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">10 cm</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">48 cm</span></label>
+                        </div>
+                    </div>
+
+                    <!-- K3 Q20 -> 60 -->
+                    <div class="soal-item">
+                        <div class="font-bold mb-2 text-sm flex gap-1.5 items-start">
+                            <span class="shrink-0">60.</span>
+                            <span class="text-justify">Luas sebuah karpet yang berbentuk persegi panjang adalah 20 satuan persegi. Jika sisi panjangnya adalah 5 satuan, berapakah lebar karpet tersebut?</span>
+                        </div>
+                        <div class="choice-container">
+                            <label class="choice-item"><div class="choice-box">A</div> <span class="font-bold">4 satuan</span></label>
+                            <label class="choice-item"><div class="choice-box">B</div> <span class="font-bold">15 satuan</span></label>
+                            <label class="choice-item"><div class="choice-box">C</div> <span class="font-bold">25 satuan</span></label>
+                            <label class="choice-item"><div class="choice-box">D</div> <span class="font-bold">100 satuan</span></label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <footer class="page-footer">
+                <div class="w-full text-center"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</div>
+            </footer>
+        </section>
+
+    </div>
+</body>
+</html>
